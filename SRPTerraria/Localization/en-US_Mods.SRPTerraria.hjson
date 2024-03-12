@@ -1,0 +1,99 @@
+# This file will automatically update with entries for new content after a build and reload
+
+Items: {
+	GrubStabber: {
+		DisplayName: Grub Stabber
+		Tooltip: Hell ya brother!
+	}
+
+	BuglinItem: {
+		DisplayName: Buglin
+		Tooltip: He's just a lil guy!
+	}
+
+	ParasitePointWand: {
+		DisplayName: Parasite Point Wand
+		Tooltip: Left-Click to increase points by 100, Right-Click to decrease. Prints out Current Points and Phase
+	}
+}
+
+NPCs: {
+	BuglinNPC.DisplayName: Buglin
+	ParasiteBaseNPC.DisplayName: Parasite Base
+	ParasiteTestNoFireNPC.DisplayName: Parasite Test No Fire
+	ParasiteTestNPC.DisplayName: Parasite Test
+	RupterNPC.DisplayName: Rupter
+}
+
+Buffs: {
+	ExtraFireDPSDebuff: {
+		DisplayName: Extra Fire DMG Debuff
+		Description: Makes this NPC take more damage from OnFire! and Hellfire debuffs
+	}
+}
+
+Configs: {
+	SRPTerrariaConfig: {
+		DisplayName: S R P Terraria Config
+		Headers.Phases: Phases Header
+
+		PhasePointRequirements: {
+			Label: The point requirements for each phase, from 0-8
+			Tooltip: ""
+		}
+
+		StartingPoints: {
+			Label: The default points that a world starts with
+			Tooltip: ""
+		}
+
+		PhaseMessages: {
+			Label: The phase messages for each phase, from 0-8
+			Tooltip: ""
+		}
+
+		PhaseCooldown: {
+			Label: How long the point cooldown is for
+			Tooltip: After the phase increases, the parasites are incapible of gaining points for X time. This is measured in frames, so 60 = 1 second
+		}
+	}
+
+	InbornTierConfig: {
+		DisplayName: Inborn Tier Config
+
+		Headers: {
+			Buglin: Buglin Header
+			Rupter: Rupter Header
+		}
+
+		BuglinHP: {
+			Label: Max HP
+			Tooltip: ""
+		}
+
+		BuglinDEF: {
+			Label: Armor
+			Tooltip: ""
+		}
+
+		RupterHP: {
+			Label: Max HP
+			Tooltip: ""
+		}
+
+		RupterDEF: {
+			Label: Armor
+			Tooltip: ""
+		}
+
+		RupterDamage: {
+			Label: Damage
+			Tooltip: ""
+		}
+
+		RupterTrackingRange: {
+			Label: Tracking Range
+			Tooltip: How far away the rupter can notice players
+		}
+	}
+}
