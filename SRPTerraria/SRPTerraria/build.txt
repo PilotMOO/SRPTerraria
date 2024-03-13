@@ -1,0 +1,3 @@
+displayName = SRP in Terraria BITCH
+author = Dr. Pilot, Kyphosis
+version = 0.1
