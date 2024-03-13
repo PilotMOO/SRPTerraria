@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "gyh1+T33KUkIDCaSbmF2w8mKWIWJ4m6YGA5CpzGa4pFO2imiSTMQqTZM0RMsHVDDNYS39fQavJhi/2VLABinoQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Pilot\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\SRPTerraria\\SRPTerraria.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pilot\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}

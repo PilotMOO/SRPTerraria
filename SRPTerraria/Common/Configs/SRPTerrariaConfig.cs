@@ -28,5 +28,19 @@ namespace SRPTerraria.Common.Configs
         [Label("How long the point cooldown is for")]
         [Tooltip("After the phase increases, the parasites are incapible of gaining points for X time. This is measured in frames, so 60 = 1 second")]
         public int PhaseCooldown;
+
+        [DefaultValue(100)]
+        [Range(0, int.MaxValue)]
+        [Label("How long it takes for sounds to return after a phase sound starts")]
+        [Tooltip("After the phase increases, a special sound is played, halting all other sounds from playing for this specified duration. This is measured in frames, so 60 = 1 second")]
+        public int PhaseSoundCooldownDefault;
+
+        [Header("ParasiteGeneral")]
+
+        [DefaultValue(100)]
+        [Range(0, int.MaxValue)]
+        [Label("Maximum Parasite Cap")]
+        [Tooltip("How many parasites can exist in the world at a given time. If exeeded, will attempt to despawn any new parasites if they can be despawned")]
+        public int ParasiteCap;
     }
 }

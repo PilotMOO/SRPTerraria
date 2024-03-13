@@ -23,6 +23,8 @@ NPCs: {
 	ParasiteTestNoFireNPC.DisplayName: Parasite Test No Fire
 	ParasiteTestNPC.DisplayName: Parasite Test
 	RupterNPC.DisplayName: Rupter
+	ParasiteAdaptableNPC.DisplayName: Parasite Adaptable N P C
+	AdaptationParasiteTestNPC.DisplayName: Adaptation Parasite Test N P C
 }
 
 Buffs: {
@@ -35,7 +37,11 @@ Buffs: {
 Configs: {
 	SRPTerrariaConfig: {
 		DisplayName: S R P Terraria Config
-		Headers.Phases: Phases Header
+
+		Headers: {
+			Phases: Phases Header
+			ParasiteGeneral: Parasite General Header
+		}
 
 		PhasePointRequirements: {
 			Label: The point requirements for each phase, from 0-8
@@ -55,6 +61,16 @@ Configs: {
 		PhaseCooldown: {
 			Label: How long the point cooldown is for
 			Tooltip: After the phase increases, the parasites are incapible of gaining points for X time. This is measured in frames, so 60 = 1 second
+		}
+
+		PhaseSoundCooldownDefault: {
+			Label: How long it takes for sounds to return after a phase sound starts
+			Tooltip: After the phase increases, a special sound is played, halting all other sounds from playing for this specified duration. This is measured in frames, so 60 = 1 second
+		}
+
+		ParasiteCap: {
+			Label: Maximum Parasite Cap
+			Tooltip: How many parasites can exist in the world at a given time. If exeeded, will attempt to despawn any new parasites if they can be despawned
 		}
 	}
 
@@ -94,6 +110,16 @@ Configs: {
 		RupterTrackingRange: {
 			Label: Tracking Range
 			Tooltip: How far away the rupter can notice players
+		}
+	}
+
+	ParasiteAdaptableNPCConfig: {
+		DisplayName: Parasite Adaptable N P C Config
+		Headers.Test: Test Header
+
+		AdaptationCap: {
+			Label: Adaptation Cap
+			Tooltip: ""
 		}
 	}
 }

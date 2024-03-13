@@ -41,6 +41,7 @@ namespace SRPTerraria.Content.Items
                 else
                 {
                     Main.NewText("Cannot add more points :[");
+                    Main.NewText("Current Phase CD: " + ModContent.GetInstance<SRPTerraria>().PhaseCooldown);
 
                     return true;
                 }

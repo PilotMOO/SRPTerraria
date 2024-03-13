@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Audio;
 using SRPTerraria.Content.NPCs.Parasites;
 using SRPTerraria.Content.NPCs.Parasites.Inborn;
 using SRPTerraria.Common.Configs;
@@ -10,20 +11,20 @@ namespace SRPTerraria
 {
 	public class SRPTerraria : Mod
 	{
-        public class SRParasites
+        //Max amount of parasites that can exist in the world (currenlty not used :/)
+        public int ParasiteCap()
         {
-            //Max amount of parasites that can exist in the world (currenlty not used :/)
-            static int ParasiteCap = 200;
-
-            //All of the parasites currently in the world. Fuctions like Main.npc but it doesn't actually do anything right now
-            public static ParasiteBaseNPC[] AllParasites = new ParasiteBaseNPC[ParasiteCap];
-
-            //All of the Parasite Types
-            public static List<int> AllParasiteType = new List<int>
-            {
-                ModContent.NPCType<BuglinNPC>(), ModContent.NPCType<RupterNPC>()
-            };
+            return ModContent.GetInstance<SRPTerrariaConfig>().ParasiteCap;
         }
+
+        //All of the parasites currently in the world. Fuctions like Main.npc but it doesn't actually do anything right now
+        public List<ParasiteBaseNPC> AllParasites = new List<ParasiteBaseNPC>();
+
+        //All of the Parasite Types
+        public static List<int> AllParasiteType = new List<int>
+        {
+            ModContent.NPCType<BuglinNPC>(), ModContent.NPCType<RupterNPC>()
+        };
 
         //Self explainatory
         public static int CurrentPoints;
@@ -38,6 +39,11 @@ namespace SRPTerraria
             return ModContent.GetInstance<SRPTerrariaConfig>().PhaseCooldown;
         }
         public int PhaseCooldown = 0;
+        public int PhaseSoundCooldownDefault()
+        {
+            return ModContent.GetInstance<SRPTerrariaConfig>().PhaseSoundCooldownDefault;
+        }
+        public static int PhaseSoundCooldown = 0;
 
         //Array of all required points for each phase, from 0-8
         public int PhasePointRequirements(int index)
@@ -146,13 +152,13 @@ namespace SRPTerraria
             {
                 if (PhaseCooldown <= 0)
                 {
+                    CurrentPoints += value;
+
                     //if after adding points Get_CurrentPhase returns an int different from the current phase, run OnPhaseChange
                     if (CurrentPhase != this.Get_CurrentPhase())
                     {
                         OnPhaseChange();
                     }
-
-                    CurrentPoints += value;
 
                     return true;
                 }
@@ -165,6 +171,11 @@ namespace SRPTerraria
             else
             {
                 CurrentPoints -= value;
+
+                if (CurrentPhase != this.Get_CurrentPhase())
+                {
+                    OnPhaseChange();
+                }
 
                 return true;
             }
@@ -198,6 +209,13 @@ namespace SRPTerraria
                 if (!string.IsNullOrEmpty(CurrentPhaseMessage))
                 {
                     Main.NewText(CurrentPhaseMessage);
+                    if (CurrentPhase < 9 && CurrentPhase > 0)
+                    {
+                        SoundEngine.SoundPlayer.PauseAll();
+                        SoundEngine.PlaySound(new SoundStyle("SRPTerraria/Assets/Sounds/PhaseSounds/evphase_" + CurrentPhase));
+                    }
+
+                    PhaseSoundCooldown = PhaseSoundCooldownDefault();
                 }
                 else
                 {
@@ -205,19 +223,7 @@ namespace SRPTerraria
                 }
 
                 PhaseCooldown = PhaseCooldownDefault();
-
-                PhaseCountDown();
             }
-        }
-
-        //Counts down the gaining points cooldown
-        IEnumerator PhaseCountDown()
-        {
-            if (PhaseCooldown > 0)
-            {
-                PhaseCooldown--;
-            }
-            yield return null;
         }
     }
 }
